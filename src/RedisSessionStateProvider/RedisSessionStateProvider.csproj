@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="KeyGenerator.cs" />
     <Compile Include="ICacheConnection.cs" />
+    <Compile Include="KeyGeneratorUtility.cs" />
     <Compile Include="RedisConnectionWrapper.cs" />
     <Compile Include="RedisProviderResource.Designer.cs">
       <AutoGen>True</AutoGen>

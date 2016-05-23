@@ -14,24 +14,24 @@ namespace Microsoft.Web.Redis
         public string LockKey { get; private set; }
         public string InternalKey { get; private set; }
 
-        public KeyGenerator(string id, string applicationName)
+        public KeyGenerator(string id, string applicationName, string sessionNamespace)
         {
+            string adjustedNamespace = KeyGeneratorUtility.AdjustNamespace(sessionNamespace);
+
             this.id = id;
-            DataKey = "{" + applicationName + "_" + id + "}_Data";
-            LockKey = "{" + applicationName + "_" + id + "}_Write_Lock";
-            InternalKey = "{" + applicationName + "_" + id + "}_Internal";
         }
 
-        public void RegenerateKeyStringIfIdModified(string id, string applicationName)
+        public void RegenerateKeyStringIfIdModified(string id, string applicationName, string sessionNamespace)
         {
             if (!id.Equals(this.id))
             {
+                string adjustedNamespace = KeyGeneratorUtility.AdjustNamespace(sessionNamespace);
+
                 this.id = id;
-                DataKey = "{" + applicationName + "_" + id + "}_Data";
-                LockKey = "{" + applicationName + "_" + id + "}_Write_Lock";
-                InternalKey = "{" + applicationName + "_" + id + "}_Internal";
             }
         }
+
+
 
     }
 }
