@@ -19,6 +19,9 @@ namespace Microsoft.Web.Redis
             string adjustedNamespace = KeyGeneratorUtility.AdjustNamespace(sessionNamespace);
 
             this.id = id;
+            DataKey = adjustedNamespace + "{" + applicationName + "_" + id + "}_Data";
+            LockKey = adjustedNamespace + "{" + applicationName + "_" + id + "}_Write_Lock";
+            InternalKey = adjustedNamespace + "{" + applicationName + "_" + id + "}_Internal";
         }
 
         public void RegenerateKeyStringIfIdModified(string id, string applicationName, string sessionNamespace)
@@ -28,6 +31,9 @@ namespace Microsoft.Web.Redis
                 string adjustedNamespace = KeyGeneratorUtility.AdjustNamespace(sessionNamespace);
 
                 this.id = id;
+                DataKey = adjustedNamespace + "{" + applicationName + "_" + id + "}_Data";
+                LockKey = adjustedNamespace + "{" + applicationName + "_" + id + "}_Write_Lock";
+                InternalKey = adjustedNamespace + "{" + applicationName + "_" + id + "}_Internal";
             }
         }
 
